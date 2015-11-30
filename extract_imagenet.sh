@@ -1,14 +1,15 @@
 #!/bin/bash
-
-# for name in /media/coldmoon/高清影视/data/*.tar; do
-#     cd /media/coldmoon/高清影视/data/
-for name in /home/coldmoon/Datasets/ISLVRC_2012/*.tar; do
-    cd /home/coldmoon/Datasets/ISLVRC_2012/
-    echo $name
+PATH2012="/home/coldmoon/Datasets/ISLVRC2012"
+num_files=$(ls -l ${PATH2012} | grep "^-" | wc -l)
+index=1
+for name in ${PATH2012}/*.tar; do
+    cd PATH2012
+    echo "${name}: ${index}/${num_files}"
     filename=${name##*/}
     pure_filename=${filename%.*}
     echo "mkdiring" $pure_filename
     mkdir $pure_filename
     cd $pure_filename
-    tar xvf ../$filename;
+    tar xvf ../$filename
+    ((index++));
 done
