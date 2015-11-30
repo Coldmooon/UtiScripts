@@ -1,4 +1,8 @@
 #!/bin/bash
+# Imagenet 2012 has 1000 tar files corresponding to 1000 classes.
+# This script is used to extract images from the 1000 tar files.
+
+# Path to imagenet 2012. There should be 1000 tar files in this directory.
 PATH2012="/home/coldmoon/Datasets/ILSVRC2012"
 filetype="tar"
 
