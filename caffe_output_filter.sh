@@ -40,16 +40,19 @@ else
 	exit 1
 fi
 
-if [ -z $3 ];
-then
-	show_usage
-	exit 1
-elif [ -f $3 ];
-then
-	log=$3
-else
-	show_usage
-	exit 1
-fi
-
-cat ${log} | grep "${phase} net output #${obj}" | cut -d "=" -f 2 | cut -d " " -f 2
+# if [ -z $3 ];
+# then
+# 	show_usage
+# 	exit 1
+# elif [ -f $3 ];
+# then
+# 	log=$3
+# else
+# 	show_usage
+# 	exit 1
+# fi
+while read line
+do
+	# cat ${log} | grep "${phase} net output #${obj}" | cut -d "=" -f 2 | cut -d " " -f 2
+	grep "${phase} net output #${obj}" | cut -d "=" -f 2 | cut -d " " -f 2
+done < "${3:-/dev/stdin}"
