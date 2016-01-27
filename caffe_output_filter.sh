@@ -6,13 +6,15 @@
 show_usage () {
 	echo
 	echo "********************************************"
-	echo Usage: $0 \<option\(s\)\> SOURCE
-	echo caffe_output_filter.sh \[train\|test\] \[loss\|top1\|top5\] file.
-	echo Options:
+	echo "Usage: $0 <option(s)> SOURCE"
+	echo "caffe_output_filter.sh [<train|test>] [<loss|top1|top5>] [file]."
+	echo "Options:"
 	echo "    train|test: specify the stage of CNN."
 	echo "    loss|top1|top5: extract loss or accuracy." 
-	echo "    file: the output of caffe."
-	echo Example: caffe_output_filter.sh train top1 caffe_output.txt 
+	echo "    file: the output of caffe or stdin."
+	echo "Examples: "
+	echo "    ./caffe_output_filter.sh train top1 caffe_output.txt"
+	echo "    cat caffe_output.txt | ./caffe_output_filter.sh test top5"         
 	echo "********************************************"
 }
 if [ "$1" = "train" ];
