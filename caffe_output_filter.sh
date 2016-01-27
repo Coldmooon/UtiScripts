@@ -1,22 +1,24 @@
 #!/bin/bash
 # This script is used to extract loss or accuracy values from the outputs of Caffe.
 # Usage:
-# caffe_output_filter.sh [train|test] [loss|top1|top5] file
+# caffe_output_filter.sh [train|test] [loss|top1|top5] [file]
 # -----------
 show_usage () {
-	echo
-	echo "********************************************"
-	echo "Usage: $0 <option(s)> SOURCE"
-	echo "caffe_output_filter.sh [<train|test>] [<loss|top1|top5>] [file]."
-	echo "Options:"
-	echo "    train|test: specify the stage of CNN."
-	echo "    loss|top1|top5: extract loss or accuracy." 
-	echo "    file: the output of caffe or stdin."
-	echo "Examples: "
-	echo "    ./caffe_output_filter.sh train top1 caffe_output.txt"
-	echo "    cat caffe_output.txt | ./caffe_output_filter.sh test top5"         
-	echo "********************************************"
+echo "
+********************************************
+Usage: $0 <option(s)> SOURCE
+caffe_output_filter.sh [<train|test>] [<loss|top1|top5>] [file].
+Options:
+	train|test: specify the stage of CNN.
+	loss|top1|top5: extract loss or accuracy.
+	file: read from a file or the standard input.
+Examples: 
+	./caffe_output_filter.sh train top1 caffe_output.txt
+	cat caffe_output.txt | ./caffe_output_filter.sh test top5
+	build/tools/caffe train --solver solver.prototxt 2>&1 | ./caffe_output_filter.sh test top5 
+********************************************"
 }
+
 if [ "$1" = "train" ];
 then
 	phase=Train
@@ -53,8 +55,8 @@ fi
 # 	show_usage
 # 	exit 1
 # fi
+
 while read line
 do
-	# cat ${log} | grep "${phase} net output #${obj}" | cut -d "=" -f 2 | cut -d " " -f 2
-	grep "${phase} net output #${obj}" | cut -d "=" -f 2 | cut -d " " -f 2
-done < "${3:-/dev/stdin}"
+	grep --line-buffered -o "${phase} net output #${obj}.*" | cut -d " " -f 7
+done < "${3:-/dev/stdin}" 
