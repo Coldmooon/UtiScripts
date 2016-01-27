@@ -15,7 +15,7 @@ Options:
 Examples: 
 	./caffe_output_filter.sh train top1 caffe_output.txt
 	cat caffe_output.txt | ./caffe_output_filter.sh test top5
-	build/tools/caffe train --solver solver.prototxt 2>&1 | ./caffe_output_filter.sh test top5 
+	build/tools/caffe train --solver solver.prototxt |& ./caffe_output_filter.sh test top5 
 ********************************************"
 }
 
@@ -59,4 +59,4 @@ fi
 while read line
 do
 	grep --line-buffered -o "${phase} net output #${obj}.*" | cut -d " " -f 7
-done < "${3:-/dev/stdin}" 
+done < "${3:-/dev/stdin}"
