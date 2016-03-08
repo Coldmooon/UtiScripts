@@ -1,11 +1,13 @@
 #!/bin/bash
-# This script is used to extract loss or accuracy values from the outputs of Caffe.
+# This script is used to extract loss or accuracy values from outputs of Caffe.
 # Usage:
 # caffe_output_filter.sh [train|test] [loss|top1|top5] [file]
 # -----------
 show_usage () {
 echo "
 ********************************************
+This script is used to extract loss or accuracy values from outputs of Caffe.
+
 Usage: $0 <option(s)> SOURCE
 caffe_output_filter.sh [<train|test>] [<loss|top1|top5>] [file].
 Options:
