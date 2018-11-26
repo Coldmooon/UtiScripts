@@ -1,0 +1,9 @@
+{
+#    "server":"2604:a880:1:20::a1:1001",
+#    "server":"2604:a880:2:d0::2039:2001",
+    "server_port":6789,
+    "local_port":1080,
+    "password":"lengyue312",
+    "method": "chacha20",
+    "timeout":600
+}
