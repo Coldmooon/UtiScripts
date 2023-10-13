@@ -1,2 +1,8 @@
-# Personal-Scripts-and-Utils
-For personal use. Some of scripts and utils are from others with some modifications.
+Some useful scripts and utils in Linux.
+
+For example. You can use `watchit.sh` to monitor a process. Once the process finished, run another command.
+```
+./watchit.sh ProcessID "command you want to run"
+
+./watchit.sh 558855 "python main.py"
+```
